@@ -1,7 +1,8 @@
 checkpoints/*
 wandb/*
+image/*
 archived/*
 *.log
-*.sh
+./*.sh
 *.ipynb
 log/*
