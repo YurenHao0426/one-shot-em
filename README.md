@@ -7,7 +7,23 @@
 ### Reproducing One-shot EM Training (SOTA)
 
 ```bash
-accelerate launch train.py --lr 2e-5 --temperature 0.5 --bsz 64
+accelerate launch train.py \
+  --model_name Qwen2.5-Math-7B \
+  --model_path /path/to/Qwen2.5-Math-7B \
+  --train_data dataset/1shot_rlvr/pi1_r1280.parquet \
+  --eval_data dataset/1shot_rlvr/pi1_r1280.parquet \
+  --effective_batch 64 \
+  --micro_batch_size auto \
+  --temperature 0.5 \
+  --learning_rate 2e-5 \
+  --eval_steps 5 \
+  --eval_batch_size 4 \
+  --eval_size 10 \
+  --max_steps 1000 \
+  --log_steps 1 \
+  --save_steps 1 \
+  --run_name my_experiment \
+  --wandb_project entropy-maximization-ft
 ```
 
 ---
@@ -15,7 +31,23 @@ accelerate launch train.py --lr 2e-5 --temperature 0.5 --bsz 64
 ### Reproducing Multi-shot EM Training
 
 ```bash
-accelerate launch train.py --lr 2e-5 --temperature 0.5 --bsz 64 --data_path "dataset/numina/numina_00.parquet"
+accelerate launch train.py \
+  --model_name Qwen2.5-Math-7B \
+  --model_path /path/to/Qwen2.5-Math-7B \
+  --train_data dataset/numina/numina_00.parquet \
+  --eval_data dataset/numina/numina_01.parquet \
+  --effective_batch 64 \
+  --micro_batch_size auto \
+  --temperature 0.5 \
+  --learning_rate 2e-5 \
+  --eval_steps 5 \
+  --eval_batch_size 4 \
+  --eval_size 10 \
+  --max_steps 1000 \
+  --log_steps 1 \
+  --save_steps 1 \
+  --run_name multi_shot_experiment \
+  --wandb_project entropy-maximization-ft
 ```
 
 ---
