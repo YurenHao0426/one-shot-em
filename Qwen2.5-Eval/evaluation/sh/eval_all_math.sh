@@ -7,7 +7,7 @@ PROMPT_TYPE="qwen25-math-cot"
 MAX_TOKENS_PER_CALL="3072"
 SPLIT="test"
 NUM_TEST_SAMPLE=-1
-DATA_NAMES="aime25x8,aime24x8,amc23x8,minerva_math,olympiadbench,math500"
+DATA_NAMES="amc23x8,minerva_math,olympiadbench,math500"
 IFS=',' read -ra DATASETS <<< "$DATA_NAMES"
 ALL_EXIST=true
 
