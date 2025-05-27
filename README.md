@@ -2,10 +2,6 @@
 
 <a href='https://arxiv.org/abs/2505.20282'><img src='https://img.shields.io/badge/arXiv-2505.20282-b31b1b.svg'></a> &nbsp;
 
-### Overview
-
-This repository provides code and instructions to reproduce the results of the **One-shot Entropy Minimization (EM)** method presented in our paper. It includes both 1-shot and multi-shot training setups, as well as evaluation using the Qwen2.5-Math benchmark.
-
 ---
 
 ### Reproducing One-shot EM Training (SOTA)
