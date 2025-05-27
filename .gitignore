@@ -1,0 +1,7 @@
+checkpoints/*
+wandb/*
+archived/*
+*.log
+*.sh
+*.ipynb
+log/*
