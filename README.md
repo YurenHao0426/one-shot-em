@@ -2,7 +2,6 @@
 
 <a href='https://arxiv.org/abs/2505.20282'><img src='https://img.shields.io/badge/arXiv-2505.20282-b31b1b.svg'></a> &nbsp;
 
----
 
 ### Installation
 
@@ -19,14 +18,10 @@ accelerate launch train.py \
   --model_name Qwen2.5-Math-7B \
   --model_path /path/to/Qwen2.5-Math-7B \
   --train_data dataset/1shot_rlvr/pi1_r1280.parquet \
-  --eval_data dataset/1shot_rlvr/pi1_r1280.parquet \
   --effective_batch 64 \
   --micro_batch_size auto \
   --temperature 0.5 \
   --learning_rate 2e-5 \
-  --eval_steps 5 \
-  --eval_batch_size 4 \
-  --eval_size 10 \
   --max_steps 1000 \
   --log_steps 1 \
   --save_steps 1 \
@@ -43,14 +38,10 @@ accelerate launch train.py \
   --model_name Qwen2.5-Math-7B \
   --model_path /path/to/Qwen2.5-Math-7B \
   --train_data dataset/numina/numina_00.parquet \
-  --eval_data dataset/numina/numina_01.parquet \
   --effective_batch 64 \
   --micro_batch_size auto \
   --temperature 0.5 \
   --learning_rate 2e-5 \
-  --eval_steps 5 \
-  --eval_batch_size 4 \
-  --eval_size 10 \
   --max_steps 1000 \
   --log_steps 1 \
   --save_steps 1 \
