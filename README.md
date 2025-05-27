@@ -4,6 +4,14 @@
 
 ---
 
+### Installation
+
+```bash
+pip install torch transformers accelerate deepspeed psutil pandas numpy wandb
+```
+
+---
+
 ### Reproducing One-shot EM Training (SOTA)
 
 ```bash
