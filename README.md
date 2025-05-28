@@ -25,8 +25,8 @@ accelerate launch train.py \
   --max_steps 1000 \
   --log_steps 1 \
   --save_steps 1 \
-  --run_name my_experiment \
-  --wandb_project entropy-maximization-ft
+  --run_name one_shot \
+  --wandb_project one-shot-em
 ```
 
 ---
@@ -45,8 +45,8 @@ accelerate launch train.py \
   --max_steps 1000 \
   --log_steps 1 \
   --save_steps 1 \
-  --run_name multi_shot_experiment \
-  --wandb_project entropy-maximization-ft
+  --run_name multi_shot \
+  --wandb_project one-shot-em
 ```
 
 ---
