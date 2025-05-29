@@ -19,7 +19,7 @@ accelerate launch train.py \
   --model_path /path/to/Qwen2.5-Math-7B \
   --train_data dataset/1shot_rlvr/pi1_r1280.parquet \
   --effective_batch 64 \
-  --micro_batch_size auto \
+  --micro_batch_size 2 \
   --temperature 0.5 \
   --learning_rate 2e-5 \
   --max_steps 50 \
@@ -39,7 +39,7 @@ accelerate launch train.py \
   --model_path /path/to/Qwen2.5-Math-7B \
   --train_data dataset/numina/numina_00.parquet \
   --effective_batch 64 \
-  --micro_batch_size auto \
+  --micro_batch_size 2 \
   --temperature 0.5 \
   --learning_rate 2e-5 \
   --max_steps 50 \
