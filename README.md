@@ -22,7 +22,7 @@ accelerate launch train.py \
   --micro_batch_size auto \
   --temperature 0.5 \
   --learning_rate 2e-5 \
-  --max_steps 1000 \
+  --max_steps 50 \
   --log_steps 1 \
   --save_steps 1 \
   --run_name one_shot \
@@ -42,7 +42,7 @@ accelerate launch train.py \
   --micro_batch_size auto \
   --temperature 0.5 \
   --learning_rate 2e-5 \
-  --max_steps 1000 \
+  --max_steps 50 \
   --log_steps 1 \
   --save_steps 1 \
   --run_name multi_shot \
