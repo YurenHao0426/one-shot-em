@@ -137,7 +137,8 @@ def main():
             
             with torch.no_grad():
                 gen_ids = accelerator.unwrap_model(model).generate(**enc, 
-                                                                   max_new_tokens=512, do_sample=True, 
+                                                                   max_new_tokens=512, 
+                                                                   do_sample=True, 
                                                                    top_p=0.95, 
                                                                    temperature=args.sample_temp, 
                                                                    synced_gpus=True, 
