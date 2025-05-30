@@ -7,7 +7,7 @@
 ### Installation
 
 ```bash
-pip install torch transformers accelerate deepspeed psutil pandas numpy wandb
+pip install torch transformers==4.47.1 accelerate deepspeed psutil pandas numpy wandb
 ```
 
 ---
