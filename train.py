@@ -12,7 +12,7 @@ import pandas as pd
 import numpy as np
 from torch.utils.data import Dataset, DataLoader
 
-# import wandb
+import wandb
 
 from accelerate import Accelerator, DeepSpeedPlugin
 from accelerate.utils import set_seed
