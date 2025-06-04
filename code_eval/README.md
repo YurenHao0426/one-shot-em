@@ -19,7 +19,6 @@ pip install -e .
 
 4. Execute the evaluation script for your desired benchmark. For example, to evaluate using the `test-humaneval-ckpt-list.sh` script:
 
-Such as:
 ```bash
 bash test-humaneval-ckpt-list.sh
 ```

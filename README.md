@@ -79,7 +79,7 @@ We sincerely thank the authors and maintainers of these projects for their excel
 ```
 @misc{gao2025oneshotentropyminimization,
       title={One-shot Entropy Minimization}, 
-      author={Zitian Gao and Lynx Chen and Joey Zhou and Bryan Dai},
+      author={Zitian Gao and Lynx Chen and Haoming Luo and Joey Zhou and Bryan Dai},
       year={2025},
       eprint={2505.20282},
       archivePrefix={arXiv},
