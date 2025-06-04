@@ -6,3 +6,6 @@ archived/*
 ./*.sh
 *.ipynb
 log/*
+*.pyc
+tmp
+code_eval/OpenCodeEval/benchmark/data
