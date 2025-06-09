@@ -141,6 +141,7 @@ def main():
                                                                    top_p=0.95, 
                                                                    temperature=args.sample_temp, 
                                                                    synced_gpus=True, 
+                                                                   repetition_penalty=1.15,
                                                                    pad_token_id=tokenizer.pad_token_id, 
                                                                    use_cache=False)
                 
