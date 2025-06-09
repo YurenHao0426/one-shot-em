@@ -7,7 +7,8 @@
 ### Installation
 
 ```bash
-pip install torch transformers==4.47.1 accelerate deepspeed psutil pandas numpy wandb
+conda create -n one-shot-em python=3.10 -y
+pip install -r requirements.txt
 ```
 
 ---
