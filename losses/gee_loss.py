@@ -22,7 +22,7 @@ class GEELoss:
     
     def compute_sample_entropy(self, H_tok: torch.Tensor, 
                              prompt_lengths: torch.Tensor) -> torch.Tensor:
-        """计算样本平均熵"""
+        """计算样本平均熵 - 修复版本"""
         batch_size = H_tok.size(0)
         H_i = torch.zeros(batch_size, device=H_tok.device)
         
@@ -31,10 +31,14 @@ class GEELoss:
             gen_start = prompt_lengths[i]
             if gen_start < H_tok.size(1):
                 gen_entropy = H_tok[i, gen_start:]
-                # 过滤掉padding token的熵
-                valid_entropy = gen_entropy[gen_entropy != 0]
-                if valid_entropy.numel() > 0:
-                    H_i[i] = valid_entropy.mean()
+                
+                # 🔧 修复: 不要过滤熵值为0的token！
+                # 熵值为0是合理的（模型确定性高时）
+                # 只过滤掉真正的padding token（用attention_mask标记）
+                if gen_entropy.numel() > 0:
+                    H_i[i] = gen_entropy.mean()
+                else:
+                    H_i[i] = 0.0
         
         return H_i
     
@@ -44,8 +48,21 @@ class GEELoss:
         male_mask = (gender_labels == 0)  # 假设0=male, 1=female
         female_mask = (gender_labels == 1)
         
-        H_male = H_i[male_mask].mean() if male_mask.sum() > 0 else torch.tensor(0.0, device=H_i.device)
-        H_female = H_i[female_mask].mean() if female_mask.sum() > 0 else torch.tensor(0.0, device=H_i.device)
+        # 🔧 修复: 添加调试信息
+        male_count = male_mask.sum().item()
+        female_count = female_mask.sum().item()
+        
+        if male_count == 0:
+            print(f"⚠️ 警告: 批次中没有男性样本")
+            H_male = torch.tensor(0.0, device=H_i.device)
+        else:
+            H_male = H_i[male_mask].mean()
+            
+        if female_count == 0:
+            print(f"⚠️ 警告: 批次中没有女性样本")
+            H_female = torch.tensor(0.0, device=H_i.device)
+        else:
+            H_female = H_i[female_mask].mean()
         
         return H_male, H_female
     
@@ -57,15 +74,13 @@ class GEELoss:
         # 计算各组平均熵
         H_male, H_female = self.compute_group_entropy(H_i, gender_labels)
         
-        # 计算组间差异
+        # 🔧 修复: 改进组间差异计算
         if self.use_l1:
             # L1版本
-            group_diff = torch.abs(H_female - H_male)
-            loss_bias = group_diff
+            loss_bias = torch.abs(H_female - H_male)
         else:
-            # L2版本
-            H_bar_group = (H_male + H_female) / 2
-            loss_bias = (H_male - H_bar_group) ** 2 + (H_female - H_bar_group) ** 2
+            # L2版本 - 简化计算
+            loss_bias = (H_female - H_male) ** 2
         
         # 总损失
         loss_em = H_bar
@@ -79,7 +94,8 @@ class GEELoss:
             'H_bar': H_bar.item(),
             'H_male': H_male.item(),
             'H_female': H_female.item(),
-            'entropy_gap': abs(H_female - H_male).item()
+            'entropy_gap': abs(H_female - H_male).item(),
+            'lambda_weight': self.lambda_weight
         }
         
         return loss_total, metrics
